@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="css/glb/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/glb/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <script src="scripts/vue.js"></script>
+</head>
+<body>
+<header id="header" class="mui-bar mui-bar-nav" >
+    <h1 class="mui-title">巡查上报</h1>
+    <a class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left"
+       href="javascript:history.go(-1)"><span class="mui-icon mui-icon-left-nav"></span></a>
+    <!--<a class="mui-icon mui-icon-bars mui-pull-right" href="#topPopover"></a>-->
+</header>
+<div class="content container-fluid">
+<div class="list-group">
+    <a href="#" class="list-group-item active">
+
+        <template v-for="it in areaRoutes">
+            <h4 class="list-group-item-heading">{{it.lineName}}</h4>
+            <p class="list-group-item-text">{{it.lineSection}}</p>
+            </template>
+    </a>
+</div>
+    </div>
+<script src="myJS/publicClass.js"></script>
+<script src="scripts/jquery-1.9.1.min.js"></script>
+<script src="scripts/jquery.selectlist.js"></script>
+<script type="text/javascript" src="myJS/getHeChaCase.js"></script>
+</body>
+</html>

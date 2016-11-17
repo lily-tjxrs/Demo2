@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <link href="css/glb/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--<link href="css/glb/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css">-->
+    <link href="css/glb/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <!--<link href="css/glb/css/components-rounded.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="css/layout.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="css/light.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="css/tjx.shell.css" rel="stylesheet" type="text/css">-->
+    <!--<link rel="stylesheet" type="text/css" href="css/jquery.selectlist.css">-->
+    <script src="scripts/vue.js"></script>
+</head>
+<body>
+<header id="header" class="mui-bar mui-bar-nav" >
+    <h1 class="mui-title">巡查上报</h1>
+    <a class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left"
+       href="javascript:history.go(-1)"><span class="mui-icon mui-icon-left-nav"></span></a>
+    <!--<a class="mui-icon mui-icon-bars mui-pull-right" href="#topPopover"></a>-->
+</header>
+<!-- 主内容部分 -->
+<div class="content container-fluid">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">巡查区域：</label>
+
+            <div class="col-sm-10">
+                <select id="edu" name="edu" class="bg-info" role="menu" style="height:40px;font-size: medium"
+                        v-model="reportData.selectedArea">
+                    <option value="空港" selected>空港</option>
+                    <option value="物流">物流</option>
+                    <option value="海港">海港</option>
+                </select>
+                <!--{{selectedArea}}-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">巡查线路：</label>
+
+            <div class="col-sm-10">
+                <!--<select id="xl" name="xl" style="height:40px;font-size: medium" class="bg-info" v-model="selectedXL"-->
+                <!--role="menu">-->
+                <!--&lt;!&ndash;<option value="请选择巡查线路" selected>请选择巡查线路</option>&ndash;&gt;-->
+                <!--<option v-for="it in areaRoutes"  value="{{it.lineName}}@{{it.lineSection}}"  v-if="it.lineArea==selectedArea" selected >-->
+                <!--{{it.lineName}}@{{it.lineSection}}-->
+                <!--</option>-->
+
+                <!--</select>-->
+
+                <select class="bg-info" name="method" data-itemid="{{ $index }}" style="height:40px;font-size: medium"
+                        v-model="reportData.selectedXL">
+                    <template v-for="it in areaRoutes">
+                        <option value="{{it.lineName}}@{{it.lineSection}}" v-if="it.lineArea==reportData.selectedArea" selected>
+                            {{it.lineName}}@{{it.lineSection}}
+                        </option>
+                        <!--<option :value="option" v-else>-->
+                        <!--{{it.lineName}}@{{it.lineSection}}-->
+                        <!--</option>-->
+                    </template>
+                </select>
+            </div>
+        </div>
+
+        <div cl class="form-group">
+            <div class="row">
+                <div class="col-sm-2">
+                </div>
+
+                <div class="col-sm-2">
+                    <select id="fx" name="fx" class="bg-info" role="menu" style="height:40px;font-size: medium"
+                            v-model="reportData.selectedFX">
+                        <option value="向南" selected>向南</option>
+                        <option value="向东">向东</option>
+                        <option value="向北">向北</option>
+                        <option value="向北">向西</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="0">
+
+                        <div class="input-group-addon">米</div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <select id="fw" name="fw" class="bg-info" role="menu" style="height:40px;font-size: medium"
+                            v-model="reportData.selectedFW">
+                        <option value="东" selected>东</option>
+                        <option value="南">南</option>
+                        <option value="西">西</option>
+                        <option value="北">北</option>
+                        <option value="西北角">中间</option>
+                        <option value="东南角">东南角</option>
+                        <option value="东北角">东北角</option>
+                        <option value="西南角">西南角</option>
+                        <option value="西北角">西北角</option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">巡查部门：</label>
+
+            <div class="col-sm-10">
+                <select id="bm" name="bm" style="height:40px;font-size: medium" class="bg-info" v-model="reportData.selectedBM"
+                        data-itemid="{{ $index }}"
+                        >
+                    <template v-for="it in bumen">
+                        <option value="{{it}}" v-if="$index==0" selected>
+                            {{it}}
+                        </option>
+                        <option value="{{it}}" v-else>
+                            {{it}}
+                        </option>
+                        <!--<option :value="option" v-else>-->
+                        <!--{{it.lineName}}@{{it.lineSection}}-->
+                        <!--</option>-->
+                    </template>
+                </select>
+                <!--<select id="bm" name="bm" style="height:40px;font-size: medium" class="bg-info" v-model="selectedBM"-->
+                <!--role="menu">-->
+                <!--<option value selected="selected">请选择巡查部门</option>-->
+                <!--<option v-for="it in bumen"  value="{{it}}"   selected >-->
+                <!--{{it}}-->
+                <!--</option>                   -->
+                <!--</select>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">大类：</label>
+
+            <div class="col-sm-10">
+                <select id="dl" name="dl" style="height:40px;font-size: medium" class="bg-info" v-model="reportData.selectedDL"
+                        data-itemid="{{ $index }}"
+                        >
+                    <template v-for="it in DL">
+                        <option value="{{it}}" v-if="$index==0" selected>
+                            {{it}}
+                        </option>
+                        <option value="{{it}}" v-else>
+                            {{it}}
+                        </option>
+                        <!--<option :value="option" v-else>-->
+                        <!--{{it.lineName}}@{{it.lineSection}}-->
+                        <!--</option>-->
+                    </template>
+                    <!--<option v-for="it in DL"  value="{{it}}"selected >-->
+                    <!--{{it}}-->
+                    <!--</option>-->
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">小类：</label>
+
+            <div class="col-sm-10">
+                <select id="xls" name="xls" style="height:40px;font-size: medium" class="bg-info" v-model="reportData.selectedXLS"
+                        role="menu">
+                    <template v-for="it in XL">
+                        <option value="{{it}}" v-if="$index==0" selected>
+                            {{it}}
+                        </option>
+                        <option value="{{it}}" v-else>
+                            {{it}}
+                        </option>
+                    </template>
+                    <!--<option v-for="it in XL"  value="{{it}}"selected >-->
+                    <!--{{it}}-->
+                    <!--</option>-->
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">等级：</label>
+
+            <div class="col-sm-10">
+                <select id="dj" name="dj" style="height:40px;font-size: medium" class="bg-info" v-model="reportData.selectedDJ"
+                        role="menu">
+
+                    <option value="2小时" selected>2小时
+                    </option>
+                    <option value="3小时">3小时
+                    </option>
+                    <option value="4小时">4小时</option>
+                    <option value="5小时">5小时</option>
+                    <option value="6小时">6小时</option>
+                    <option value="7小时">7小时</option>
+                    <option value="8小时">8小时</option>
+                    <option value="9小时">9小时</option>
+                    <option value="10小时">10小时</option>
+                    <option value="11小时">11小时</option>
+                    <option value="12小时">12小时</option>
+                    <option value="24小时">24小时</option>
+                    <option value="48小时">48小时</option>
+                    <option value="3工作日">3工作日</option>
+                    <option value="7工作日">7工作日</option>
+
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">案件描述：</label>
+
+            <div class="col-sm-10">
+                <input class="form-control" type="text" placeholder="案件描述" id="miaoshu" v-model="reportData.inpuptMiaoshu">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">备注：</label>
+
+            <div class="col-sm-10">
+                <input class="form-control" type="text" placeholder="备注" id="beizhu" v-model="reportData.inputBeizhu">
+            </div>
+        </div>
+        <div>
+            <!--<input class="form-control" type="button" placeholder="提交" @click="log('aa')">-->
+        </div>
+    </form>
+
+
+</div>
+
+<div >
+    <label ></label>
+</div>
+<div class="mui-bar mui-bar-footer">
+    <!--<a class="mui-icon  mui-pull-left btn-success" href="#topPopover">提交</a>-->
+    <button class="mui-pull-left btn-success" id="btnReport" @click="btnReport">提交 <span class="badge">√</span></button>
+    <button class="mui-pull-left btn-primary" id="btnSave" @click="btnReport">保存 <span class="badge mui-badge-blue"></span></button>
+    <!--<a class="mui-icon mui-icon-bars mui-pull-right" href="#topPopover">图片</a>-->
+    <button class="btn btn-primary mui-pull-right" type="button">
+        图片 <span class="badge">4</span>
+    </button>
+</div>
+<script src="myJS/publicClass.js"></script>
+<script src="scripts/jquery-1.9.1.min.js"></script>
+<script src="scripts/jquery.selectlist.js"></script>
+<script type="text/javascript" src="myJS/report.js"></script>
+
+<!--<script type="text/javascript">-->
+<!--$(function(){-->
+<!--$('select').selectlist({-->
+<!--zIndex: 10,-->
+<!--width: 300,-->
+<!--height: 40-->
+<!--});-->
+<!--})-->
+<!--</script>-->
+
+
+</body>
+</html>

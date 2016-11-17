@@ -1,0 +1,100 @@
+body {
+    background-color: #dde3ed !important;
+
+}
+
+#shellcontent {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px auto;
+
+    position: relative;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right : 0px;
+}
+
+.tjx-md-25 {
+    width: 25%;
+}
+
+.tjx-md-100 {
+    width: 100%;
+}
+
+.tjx-margin-left-0 {
+    margin-left: 0px;
+}
+
+.tjx-a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 30px;
+    padding: 15px 15px;
+    text-decoration: none;
+    vertical-align:middle;
+}
+
+
+ .tjx-a:link, .tjx-a:visited,.tjx-a:active, .tjx-a:hover {
+    text-decoration: none;
+}
+.tjx-a:link {
+
+}
+
+.tjx-a:hover {
+    background-color: darkgray;
+}
+
+.tjx-a:active {
+    background-color: darkgray;
+}
+
+.tjx-a:visited {
+    font-weight: bold;
+
+   }
+
+
+
+
+.tjx-shell-index1-menu-nav09:hover{	background:url(../images/shell/edit1.png) no-repeat;width: 32px;height: 32px; }
+.tjx-shell-index1-menu-nav09:link{	background:url(../images/shell/edit1.png) no-repeat;width: 32px;height: 32px; }
+.tjx-shell-index1-menu-nav09:visited{	background:url(../images/shell/edit1.png) no-repeat; width: 32px;height: 32px;}
+.tjx-shell-index1-menu-nav09:active {	background:url(../images/shell/edit1.png) no-repeat;width: 32px;height: 32px;}
+
+
+#tjx-shell-menu-01:link {
+    display: block;
+    background-color: #e9ecf3;
+
+}
+#tjx-shell-menu-01:hover {
+    display:  block;
+    background-color: #e9ecf3;
+}
+#tjx-shell-menu-01:active {
+    display: block;
+    background-color: #e9ecf3;
+}
+
+.tjx-shell-index1-menu-nav05 ,.tjx-shell-index1-menu-nav05 a{display:inline-block;background:url(../images/shell/edit1.png) no-repeat;width:32px; height:32px; cursor:hand;}
+.tjx-shell-index1-menu-nav05 a:hover{	background:url(../images/shell/edit1.png) no-repeat; width:32px; height:32px; cursor:hand;}
+.tjx-shell-index1-menu-nav05:active a{	background:url(../images/shell/edit1.png) no-repeat;width:32px; height:32px; cursor:hand;}
+
+
+#center { margin: 0px auto; }
+
+.tjx-pad-5 {
+    padding: 5px;
+}
+
+.tjx-color-light {
+    background-color: #e9ecf3;
+}
+
+
+
